@@ -5,18 +5,18 @@ permalink:           pretty
 relative_permalinks: true
 
 # Setup
-title:               cytosine
-tagline:             'CTF & Security'
-description:         'A place to store CTF writeups and talk about shit I find interesting.'
-url:                 http://cy70sin3.github.io
+title:               crimsol
+tagline:             'Security chat'
+description:         'My thoughts on security'
+url:                 http://crimsol.xyz
 baseurl:             ''
 paginate:            3
 excerpt_separator: <!--more-->
 
 # About/contact
 author:
-  name:              cytosine
-  email:             cyto@cytosine.xyz
+  name:              Matt
+  email:             crimsol7449@gmail.com
 
 # Custom vars
 version:             1.0.0
