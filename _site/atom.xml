@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>cytosine</title>
+ <link href="http://cy70sin3.github.io/atom.xml" rel="self"/>
+ <link href="http://cy70sin3.github.io/"/>
+ <updated>2015-10-12T09:10:45+11:00</updated>
+ <id>http://cy70sin3.github.io</id>
+ <author>
+   <name>cytosine</name>
+   <email>cyto@cytosine.xyz</email>
+ </author>
+
+ 
+ <entry>
+   <title>Keygenme228</title>
+   <link href="http://cy70sin3.github.io/2015/10/11/keygenme228/"/>
+   <updated>2015-10-11T00:00:00+11:00</updated>
+   <id>http://cy70sin3.github.io/2015/10/11/keygenme228</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;This is a basic keygenme in Linux. Enjoy!&lt;br /&gt;
+&lt;!--more--&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.crackmes.de/users/profdraculare/keygenme228/&quot;&gt;Binary&lt;/a&gt;&lt;br /&gt;
+This was a nice simple challenge. Single user input gets stored at esp+15 and length checked ( &amp;gt; 0x02 ).&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;804853e: e8 cd fe ff ff        call   8048410 &amp;lt;__isoc99_scanf@plt&amp;gt;
+8048543: 8d 44 24 15           lea    eax,[esp+0x15]
+8048547: 89 04 24              mov    DWORD PTR [esp],eax
+804854a: e8 a1 fe ff ff        call   80483f0 &amp;lt;strlen@plt&amp;gt;
+804854f: 89 84 24 14 01 00 00  mov    DWORD PTR [esp+0x114],eax
+8048556: 83 bc 24 14 01 00 00  cmp    DWORD PTR [esp+0x114],0x2 // test &amp;gt; 0x02&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Two correct cases:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Increasing sequence&lt;/li&gt;
+  &lt;li&gt;Decreasing sequence&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Case 1:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;80485ad: 89 c8              mov    eax,ecx
+80485af: 85 c0              test   eax,eax
+80485b1: 7e 0d              jle    80485c0 &amp;lt;main+0xb4&amp;gt; a[i] &amp;lt;= a[i+1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Case 2:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;804862c: 89 c8              mov    eax,ecx
+804862e: 85 c0              test   eax,eax
+8048630: 79 0d              jns    804863f &amp;lt;main+0x133&amp;gt; a[i] &amp;gt;= a[i+1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;string&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;case1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;letters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;case2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;letters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;reverse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serial&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Case? &amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;choice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;case1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;case2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>BeatMe</title>
+   <link href="http://cy70sin3.github.io/2015/10/10/Beatme/"/>
+   <updated>2015-10-10T00:00:00+11:00</updated>
+   <id>http://cy70sin3.github.io/2015/10/10/Beatme</id>
+   <content type="html">&lt;blockquote&gt;
+  &lt;p&gt;hello !&lt;br /&gt;
+the task is simple :)&lt;br /&gt;
+just try to make a working keygen for this crackme !&lt;br /&gt;
+good luck and have a good day :)
+&lt;!--more--&gt;
+&lt;a href=&quot;http://www.crackmes.de/users/rezk2ll/beatme/&quot;&gt;Binary&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://cy70sin3.github.io/assets/crackmes-BeatMe/file.png&quot; alt=&quot;Screenshot&quot; /&gt;
+So the task seems simple enough, given a 32-Bit ELF file, write a keygen. Sweet let’s do it.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.text:08048080                 public start
+.text:08048080 start           proc near
+.text:08048080                 call    sub_8048132
+.text:08048085                 mov     esi, offset aVtfsobnf ; &amp;quot;VTFSOBNF!;!&amp;quot;
+.text:0804808A                 call    sub_80481D3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Straight up we can see what looks like an encoded string pointed to by esi being passed to the function at 0x080481D3.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.text:080481D3 sub_80481D3     proc near               ; CODE XREF: start+Ap
+.text:080481D3                                         ; start+5Ep ...
+.text:080481D3                 mov     edi, esi
+.text:080481D5
+.text:080481D5 loc_80481D5:                            ; CODE XREF: sub_80481D3+Aj
+.text:080481D5                 lodsb
+.text:080481D6                 test    al, al
+.text:080481D8                 jz      short loc_80481DF
+.text:080481DA                 dec     al
+.text:080481DC                 stosb
+.text:080481DD                 jmp     short loc_80481D5&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This is looking like a basic Ceasar Cipher with the character pointed to by esi shifted at 0x080481DA.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;v1 = sys_read(0, &amp;amp;user_80493EC, 0x14u);       // Read in username
+  JUMPOUT(v1, 3, &amp;amp;loc_80482A0);
+  if ( v1 &amp;gt;= 10 )
+  {
+    byte_8049421 = 1;
+    JUMPOUT(&amp;amp;loc_80482A0);
+  }
+  user_byte_804941E = v1 - 1;                   // Store username
+  sub_80481D3(aQbttxpse);
+  v2 = sys_write(1, aQbttxpse, 0xCu);
+  v3 = sys_read(0, &amp;amp;pass_804940A, 0xCu);        // Read in password
+  JUMPOUT(v3, 5, &amp;amp;loc_80482A0);
+  if ( v3 &amp;gt;= 12 )
+  {
+    byte_8049421 = 1;
+    JUMPOUT(&amp;amp;loc_80482A0);
+  }
+  pass_byte_804941F = v3 - 1;                   // Store password
+  checks_sub_80481E4();                         // Additional checks
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Moving onto user input we can see that the username is stored at 0x080493EC and the password stored at 0x0804940A.&lt;br /&gt;
+Basic length checks are performed and the values are then moved to 0x0804941E and 0x0804941F respectively.&lt;br /&gt;
+Finally it calls the function at 0x080481E4 which performs additional checks.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;if ( user_byte_804941E == pass_804940A[0] - 48)// pass[0] == len(user)
+  {
+    v0 = __rdtsc();
+    dword_80493E6 = v0;
+    v1 = __rdtsc();
+    if ( (signed int)v1 - dword_80493E6 &amp;lt;= 13568 )
+    {
+      if ( pass_804940A[1] == byte_80493EE ) // pass[1] == user[2]
+      {
+        sub_80481D3(&amp;amp;pass_804940A[2]); // decrypt(pass[2:])
+        v2 = &amp;amp;pass_804940A[2];
+        v3 = &amp;amp;pass_804940A[2];
+        for ( i = (unsigned __int8)user_byte_804941E &amp;gt;&amp;gt; 1; ; *v3++ = v5 - i ) // shift
+        {
+          v5 = *v2++;
+          if ( !v5 )
+            break;
+        }
+        v6 = (unsigned __int8)user_byte_804941E;
+        *v3 = 0;
+        sub_80481E1(v6);
+        v9 = &amp;amp;pass_804940A[2];
+        v10 = &amp;amp;user_80493EC;
+        do
+        {
+          if ( !v8 )
+            break;
+          v7 = *v9++ == *v10++; // pass[2:] == user
+          --v8;
+        }
+        while ( v7 );
+        if ( v7 &amp;amp;&amp;amp; *(v9 - 2) == *(v10 - 2) ) // win
+        {
+          sub_80481D3(aDpssfduZpvXjo);
+          v11 = sys_write(1, aDpssfduZpvXjo, 0x14u);
+          goto LABEL_17;
+        }
+      }
+    }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The additional checks are simple enough, first it checks that pass[0] == len(user) and pass[1] == user[2].&lt;br /&gt;
+pass[2:] is then decoded with the same Ceasar Cipher as before and an additional shift is applied.&lt;br /&gt;
+If the resulting password is equal to the username the program will print ‘CORRECT , YOU WIN’.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://cy70sin3.github.io/assets/crackmes-BeatMe/win.png&quot; alt=&quot;Screenshot&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;solution&quot;&gt;Solution&lt;/h2&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;encrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ord&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;6&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;raw_input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Username: &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;encrypt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</content>
+ </entry>
+ 
+
+</feed>
