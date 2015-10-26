@@ -8,7 +8,7 @@ relative_permalinks: true
 title:               crimsol
 tagline:             'Security chat'
 description:         'My thoughts on security'
-url:                 http://crimsol.xyz
+url:                 http://crimsoll.github.io
 baseurl:             ''
 paginate:            3
 excerpt_separator: <!--more-->
