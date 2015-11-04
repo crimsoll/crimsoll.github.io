@@ -10,7 +10,6 @@ tagline:             'Placeholder'
 description:         'Placeholder'
 url:                 http://crimsoll.github.io
 baseurl:             ''
-paginate:            5
 
 # About/contact
 author:
@@ -18,7 +17,3 @@ author:
 
 # Custom vars
 version:             1.0.0
-
-# Plugins
-gems:
-- jekyll-paginate
